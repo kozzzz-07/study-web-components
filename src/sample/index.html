@@ -6,7 +6,18 @@
     <title>Document</title>
   </head>
   <body>
-    <my-alert class="alert--warning">アラート</my-alert>
+    <!-- .alertがあってもmy-alertにしか影響しない -->
+    <!-- <div class="alert">アラート</div> -->
+    <my-alert message="未入力項目があります。" warning>
+      <p slot="body">メールアドレスを確認してください。</p>
+    </my-alert>
+    <my-alert message="リスト" success>
+      <ul slot="body">
+        <li>みかん</li>
+        <li>唐揚げ</li>
+      </ul>
+    </my-alert>
+
     <script type="module" src="./index.js"></script>
   </body>
 </html>

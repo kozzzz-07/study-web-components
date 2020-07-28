@@ -9,10 +9,24 @@ class MyAlert extends HTMLElement {
   init() {
     const template = document.getElementById("my-alert-template");
     const templateContent = template.content;
-
     const shadowRoot = this.attachShadow({ mode: "open" }).appendChild(
       templateContent.cloneNode(true)
     );
+  }
+
+  connectedCallback() {
+    this.setTitle();
+  }
+
+  setTitle() {
+    if (!this.hasAttribute("message")) {
+      return;
+    }
+
+    const shadow = this.shadowRoot;
+    const alertTitleElm = shadow.getElementById("alert-title");
+    const message = this.getAttribute("message");
+    alertTitleElm.textContent = message;
   }
 }
 

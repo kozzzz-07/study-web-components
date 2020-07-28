@@ -1,44 +1,45 @@
 <template id="my-alert-template">
   <style>
-    .alert {
+    :host {
+      display: block;
       position: relative;
       border-radius: 6px;
       border: 1px solid #dddddd;
-      background-color: #fefefe;
+      background-color: #efefef;
       padding: 0.6em 0.6em;
     }
 
-    .alert--warning {
+    :host([warning]) {
       border-color: #faebcc;
       background-color: #fcf8e3;
     }
 
-    .alert--error {
+    :host([error]) {
       border-color: #ebccd1;
       background-color: #f2dede;
     }
 
-    .alert--success {
+    :host([success]) {
       border-color: #d6e9c6;
       background-color: #dff0d8;
     }
 
-    .alert__title,
-    .alert__body > * {
-      font-weight: bold;
-    }
-
-    .alert__title {
+    [id="alert-title"] {
       margin: 0;
       padding: 0;
       font-weight: bold;
     }
+
+    ::slotted(*) {
+      margin: 0;
+      padding: 0;
+    }
+
+    ::slotted(ul) {
+      margin-left: 1.2rem;
+    }
   </style>
 
-  <div class="alert">
-    <p class="alert__title">アラートタイトル</p>
-    <div class="alert__bosy">
-      <p>アラート本文</p>
-    </div>
-  </div>
+  <p id="alert-title"></p>
+  <slot name="body"></slot>
 </template>
