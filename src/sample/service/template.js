@@ -6,19 +6,9 @@ export function getTemplate(path) {
     .then(readAll);
 }
 
-let strHtml = "";
-const decoder = new TextDecoder();
-
-// async function readChunk({ done, value, reader }) {
-//   if (done) {
-//     return strHtml;
-//   }
-//   strHtml += decoder.decode(value);
-//   const res = await reader.read();
-//   readChunk({ ...res, reader });
-// }
-
 async function readAll(reader) {
+  let strHtml = "";
+  const decoder = new TextDecoder();
   let res = await reader.read();
   while (!res.done) {
     strHtml += decoder.decode(res.value);
